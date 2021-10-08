@@ -22,17 +22,6 @@ app.get('/notes', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
-
-
-app.get('/api/notes', (req, res) => {
- res.json(database);
-});
-
-
-
-
-
-
 const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err ? console.error(err) : console.info(`\nData written to ${destination}`)
@@ -51,6 +40,10 @@ const readAndAppend = (content, file) => {
   };
 
 
+app.get('/api/notes', (req, res) => {
+ res.json(database);
+});
+
 app.post('/api/notes', (req, res) => {
   
     const { title, text } = req.body;
@@ -64,6 +57,7 @@ app.post('/api/notes', (req, res) => {
   
       readAndAppend(newNote, './db/db.json');
       res.json(`Note added!`);
+      database.push(newNote)
     } else {
       res.error('Error adding Note :(');
     }
@@ -77,4 +71,4 @@ app.post('/api/notes', (req, res) => {
 
 
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+app.listen(PORT, () => console.log(`Listening to server on port ${PORT}`))
