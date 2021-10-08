@@ -33,6 +33,10 @@ app.get('/api/notes', (req, res) => {
 
 
 
+const writeToFile = (destination, content) =>
+  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
+    err ? console.error(err) : console.info(`\nData written to ${destination}`)
+  );
 
 const readAndAppend = (content, file) => {
     fs.readFile(file, 'utf8', (err, data) => {
@@ -58,7 +62,7 @@ app.post('/api/notes', (req, res) => {
         // note_id: uuid(),
       };
   
-      readAndAppend(newNote, '/db/db.json');
+      readAndAppend(newNote, './db/db.json');
       res.json(`Note added!`);
     } else {
       res.error('Error adding Note :(');
