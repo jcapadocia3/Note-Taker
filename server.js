@@ -34,6 +34,39 @@ app.get('/api/notes', (req, res) => {
 
 
 
+const readAndAppend = (content, file) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        const parsedData = JSON.parse(data);
+        parsedData.push(content);
+        writeToFile(file, parsedData);
+      }
+    });
+  };
+
+
+app.post('/api/notes', (req, res) => {
+  
+    const { title, text } = req.body;
+  
+    if (req.body) {
+      const newNote = {
+        title,
+        text,
+        // note_id: uuid(),
+      };
+  
+      readAndAppend(newNote, '/db/db.json');
+      res.json(`Note added!`);
+    } else {
+      res.error('Error adding Note :(');
+    }
+  });
+
+
+
 
 
 
