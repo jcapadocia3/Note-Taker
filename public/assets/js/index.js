@@ -54,6 +54,7 @@ const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
+    console.log(activeNote);
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
@@ -100,6 +101,7 @@ const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
+  console.log("Click!")
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
@@ -133,6 +135,7 @@ const renderNoteList = async (notes) => {
     const spanEl = document.createElement('span');
     spanEl.classList.add('list-item-title');
     spanEl.innerText = text;
+    console.log(spanEl);
     spanEl.addEventListener('click', handleNoteView);
 
     liEl.append(spanEl);
