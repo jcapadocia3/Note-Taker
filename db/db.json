@@ -4,18 +4,13 @@
     "text": "Test text"
   },
   {
-    "title": "123123",
-    "text": "123123",
-    "note_id": 357
+    "title": "123",
+    "text": "123",
+    "id": 448
   },
   {
     "title": "asdasd",
     "text": "asdasd",
-    "note_id": 299
-  },
-  {
-    "title": "qweqwe",
-    "text": "qweqwe",
-    "note_id": 277
+    "id": 417
   }
 ]

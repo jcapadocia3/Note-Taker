@@ -56,7 +56,7 @@ app.post('/api/notes', (req, res) => {
         title,
         text,
         // Imports function from uuid.js to assign a unique ID to new note
-        note_id: uuid(),
+        id: uuid(),
       };
 
       notes.push(newNote)
