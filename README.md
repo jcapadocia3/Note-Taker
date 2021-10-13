@@ -14,7 +14,7 @@ https://nu-note-taker.herokuapp.com/
 1. [Description](#Description)
 2. [Final Product Image](#Final-Product-Image)
 3. [User Story](#User-Story)
-4. [Installation and Instructions](#Installation-and-Instructions)
+4. [Installation and Instructions](#Instructions)
 5. [License](#License)
 6. [Questions](#Questions)
 
@@ -24,7 +24,9 @@ The purpose of this project is to allow a user to write and save notes to be sto
 ## Final Product Image
 
 - Image of final product website created<br>
-<img src="file path" alt="Final Product" width="800">
+<img src="./images/img1.png" alt="Final Product" width="800">
+<img src="./images/img2.png" alt="Final Product" width="800">
+<img src="./images/img3.png" alt="Final Product" width="800">
 
 ## User Story
 ```
@@ -49,12 +51,9 @@ WHEN I click on the Write icon in the navigation at the top of the page
 THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 ```
 
-## Installation and Instructions
-- Download app files via GitHub
-- Open GitBash/Terminal to access the command line
-- Via the command line, run "npm install" to install required dependencies for the project to work as intended
-- Via the command line, run "node server.js" to initialize the server and run the code
-- Go to "localhost:3001" within a web browser to utilize app
+## Instructions
+- Visit [Deployed Heroku App](#Link-to-Deployed-Heroku-App) URL provided above
+- Enjoy using the app!
 
 ## License
 - MIT License
