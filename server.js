@@ -27,35 +27,28 @@ app.get('/notes', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 })
 
-// Function to write data to the JSON file
-const writeToFile = (destination, content) =>
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
-  );
-
-// Function to read data from and to append/write content to it
-const readAndAppend = (content, file) => {
-    fs.readFile(file, 'utf8', (err, data) => {
-      if (err) {
-        console.error(err);
-      } else {
-        const parsedData = JSON.parse(data);
-        parsedData.push(content);
-        writeToFile(file, parsedData);
-      }
-    });
-  };
-
 // GET route to retrieve all stored notes
-app.get('/api/notes', (req, res) => {
- res.json(database);
-});
+app.get("/api/notes", (req, res) =>
+  fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", (err, data) => {
+    if (err) {
+      throw err;
+    }
+    const notes = JSON.parse(data);
+    res.json(notes);
+  }));
 
 // POST route to add new notes to store notes
 app.post('/api/notes', (req, res) => {
+
+  // Reads data in db.json file
+  fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
   
     // Destructuring assigment for items in req.body
     const { title, text } = req.body;
+    const notes = JSON.parse(data);
   
     // All required properties must be present in new note before it's added
     if (req.body) {
@@ -65,19 +58,21 @@ app.post('/api/notes', (req, res) => {
         // Imports function from uuid.js to assign a unique ID to new note
         note_id: uuid(),
       };
+
+      notes.push(newNote)
+      res.json(newNote);
   
-      // Reads new note information and appends/writes it to db.json
-      readAndAppend(newNote, './db/db.json');
-      res.json(`Note added!`);
-      database.push(newNote)
-    } else {
-      res.error('Error adding Note :(');
-    }
-  });
+      // Writes note to db.json file
+      fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(notes, null, 2), "utf-8", (err) => {
+        if (err) throw err; console.log("new note added!")
+      });      
+    };
+  })
+});
 
 
 
 
 
 // LISTENS to ensure app is active on designated PORT
-app.listen(PORT, () => console.log(`Listening to server on port ${PORT}`))
+app.listen(PORT, () => console.log(`Listening to server on port ${PORT}`));
