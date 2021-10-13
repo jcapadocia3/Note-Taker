@@ -14,7 +14,7 @@ https://nu-note-taker.herokuapp.com/
 1. [Description](#Description)
 2. [Final Product Image](#Final-Product-Image)
 3. [User Story](#User-Story)
-4. [Installation and Instructions](#Instructions)
+4. [Instructions](#Instructions)
 5. [License](#License)
 6. [Questions](#Questions)
 
