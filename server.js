@@ -77,3 +77,4 @@ app.post("/api/notes", (req, res) => {
 
 // LISTENS to ensure app is active on designated PORT
 app.listen(PORT, () => console.log(`Listening to server on port ${PORT}`));
+
